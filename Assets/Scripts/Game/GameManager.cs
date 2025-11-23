@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     {
         var controllerInstance = Instantiate(CurrentGameMode.Controller);
         controllerInstance.Initialize(this);
+        controllerInstance.Setup();
         controllerInstance.StartGame();
     }
 
