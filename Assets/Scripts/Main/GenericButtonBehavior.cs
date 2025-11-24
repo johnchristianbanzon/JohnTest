@@ -5,14 +5,10 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Button))]
 public class GenericButtonBehavior : MonoBehaviour
 {
+    [SerializeField]
     private Button _button;
-
-    // Start is called before the first frame update
-    public void Start()
-    {
-        _button = GetComponent<Button>();
-    
-    }
+    [SerializeField]
+    private Text _text;
 
     public void SetButtonEvent(Action onClickButton)
     {
@@ -23,5 +19,9 @@ public class GenericButtonBehavior : MonoBehaviour
         });
     }
 
+    public void SetText(string text)
+    {
+        _text.text = text;
+    }
 
 }
