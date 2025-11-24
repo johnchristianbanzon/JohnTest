@@ -13,39 +13,51 @@ MonoBehaviour:
   m_Name: MatchingSymbolContainer
   m_EditorClassIdentifier: 
   SymbolData:
-  - Label: 1
+  - Id: 0
+    Label: 1
     Face: 1
     FaceSprite: {fileID: 21300000, guid: d51809f1adf6deb44b5b59d725081487, type: 3}
-  - Label: 2
+  - Id: 1
+    Label: 2
     Face: 1
     FaceSprite: {fileID: 21300000, guid: 5ebf9998dac5e3846be9492050fd399c, type: 3}
-  - Label: 3
+  - Id: 2
+    Label: 3
     Face: 1
     FaceSprite: {fileID: 21300000, guid: 9fd01b2c1d9dea941bcf97bfb145ddad, type: 3}
-  - Label: 4
+  - Id: 3
+    Label: 4
     Face: 3
     FaceSprite: {fileID: 21300000, guid: 14e5eee40d4ed4c48a0bbf55f23c0357, type: 3}
-  - Label: 5
+  - Id: 4
+    Label: 5
     Face: 3
     FaceSprite: {fileID: 21300000, guid: c6d5acb306fe6ea43990effc0f6526a2, type: 3}
-  - Label: 6
+  - Id: 5
+    Label: 6
     Face: 3
     FaceSprite: {fileID: 21300000, guid: 9c6843dcac57a7440958f24813b4309a, type: 3}
-  - Label: 7
+  - Id: 6
+    Label: 7
     Face: 0
     FaceSprite: {fileID: 21300000, guid: 979c6e85d0c73ee4b880d9ab93e9f6da, type: 3}
-  - Label: 8
+  - Id: 7
+    Label: 8
     Face: 0
     FaceSprite: {fileID: 21300000, guid: 8179af22ea1a86b488fa9f5201f7958d, type: 3}
-  - Label: 9
+  - Id: 8
+    Label: 9
     Face: 0
     FaceSprite: {fileID: 21300000, guid: 35a40ae0461130044bbfeb843286dea5, type: 3}
-  - Label: 10
+  - Id: 9
+    Label: 10
     Face: 2
     FaceSprite: {fileID: 21300000, guid: d621022df430bd84c99d37748f1ee0ac, type: 3}
-  - Label: 11
+  - Id: 10
+    Label: 11
     Face: 2
     FaceSprite: {fileID: 21300000, guid: ecf2910db90814e4c9e1434e876f0653, type: 3}
-  - Label: 12
+  - Id: 11
+    Label: 12
     Face: 2
     FaceSprite: {fileID: 21300000, guid: 4d8b6cd94d9905e4fac1382aab5f9c60, type: 3}
