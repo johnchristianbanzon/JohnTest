@@ -19,5 +19,6 @@ public class DependencyResolver : MonoBehaviour
         Container.Register<IGameManager>(_gameManager);
         Container.Register<IUIManager>(_uiManager);
         Container.Register<IResourceManager>(new ResourceManager());
+        Container.Register<ISaveManager>(new SaveManager());
     }
 }
