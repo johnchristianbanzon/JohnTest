@@ -1,9 +1,27 @@
 using System;
+using System.Collections.Generic;
 
 public class MatchingPresenter : BasePresenter<MatchingModel, MatchingView>
 {
-    public void SetupBoard(MatchingConfig matchingConfig)
+    private IMatchingControllerResource _matchingGameController;
+
+    public void Inject(IMatchingControllerResource matchingGameController)
     {
-        View.SetupBoard(matchingConfig.GameboardSize.x, matchingConfig.GameboardSize.y);
+        _matchingGameController = matchingGameController;
+        View.Inject(matchingGameController);
+        Model.Inject(_matchingGameController);
     }
+
+    public void SetupBoard(MatchingConfigSO matchingConfig)
+    {
+        Model.GetMatchBoard(matchingConfig, PopulateView);
+
+
+        void PopulateView(List<SymbolData> symbolData)
+        {
+            View.SetupBoard(symbolData, Model.TapMatchCard, matchingConfig);
+        }
+    }
+
+   
 }
