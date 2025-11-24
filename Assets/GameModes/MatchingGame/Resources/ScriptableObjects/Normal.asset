@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68ad5ccd76daada47b55bf39c15861ed, type: 3}
   m_Name: Normal
   m_EditorClassIdentifier: 
+  Name: Normal
+  GameModeId: 1
   MatchModeName: Normal
   MatchConditionAmount: 2
-  GameboardSize: {x: 5, y: 5}
+  GameboardSize: {x: 3, y: 4}

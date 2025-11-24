@@ -1,5 +1,7 @@
 
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MatchingGameController : GameController, IMatchingControllerResource
@@ -7,11 +9,23 @@ public class MatchingGameController : GameController, IMatchingControllerResourc
     [SerializeField]
     private MatchingView _matchingView;
     [SerializeField]
-    private MatchingConfigSO _matchingConfig;
-    [SerializeField]
     private MatchingSymbolContainerSO _symbolContainer;
     private MatchingPresenter _matchingPresenter;
     private List<SymbolData> _uniqueSymbolData = new List<SymbolData>();
+    private ISaveManager _saveManager;
+    private IGameManager _gameManager;
+
+
+    private void Awake()
+    {
+        _gameManager = DependencyResolver.Container.Resolve<IGameManager>();
+
+    }
+
+    public SymbolData GetSymbolDataFromId(int id)
+    {
+        return _symbolContainer.SymbolData.ToList().First(d => d.Id == id);
+    }
 
     public SymbolData GetRandomMatchingSymbol()
     {
@@ -37,8 +51,18 @@ public class MatchingGameController : GameController, IMatchingControllerResourc
 
     }
 
-    public override void StartGame()
+    public override void StartGame(GameModeConfig matchConfig)
     {
-        _matchingPresenter.SetupBoard(_matchingConfig);
+        _matchingPresenter.SetupBoard((MatchingConfigSO)matchConfig);
+    }
+
+    public override void ContinueGame()
+    {
+        base.ContinueGame();
+        Debug.Log("_saveManager :" + _saveManager);
+        _saveManager = DependencyResolver.Container.Resolve<ISaveManager>();
+        var matchSaveData = _saveManager.LoadMatchingSaveData();
+  
+        _matchingPresenter.OverrideBoardFromSaveData((MatchingConfigSO)_gameManager.GetCurrentGameMode().GameModeConfig[matchSaveData.GameModeId], matchSaveData.Cards);
     }
 }

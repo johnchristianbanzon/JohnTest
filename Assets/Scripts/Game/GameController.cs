@@ -17,7 +17,12 @@ public class GameController : MonoBehaviour
 
     }
 
-    public virtual void StartGame()
+    public virtual void StartGame(GameModeConfig gameModeConfig)
+    {
+
+    }
+
+    public virtual void ContinueGame()
     {
 
     }

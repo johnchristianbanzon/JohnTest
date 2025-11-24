@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Matching
   Controller: {fileID: 4136140131140323156, guid: 085231327660959488408d7457c266e0, type: 3}
+  GameModeConfig:
+  - {fileID: 11400000, guid: ae51e77f9d3c7f84eb44bf24acc16a78, type: 2}
+  - {fileID: 11400000, guid: bbe8ca2cbabaed6469a4ea903351cc03, type: 2}

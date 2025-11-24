@@ -1,9 +1,8 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "GameMode/Matching/Config", order = 31)]
-public class MatchingConfigSO : ScriptableObject
+public class MatchingConfigSO : GameModeConfig
 {
-    public string MatchModeName;
     public int MatchConditionAmount;
     public Vector2Int GameboardSize;
 }

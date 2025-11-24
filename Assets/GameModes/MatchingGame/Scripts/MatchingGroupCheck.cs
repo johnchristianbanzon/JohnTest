@@ -21,7 +21,6 @@ public class MatchingGroupCheck
     public void AddSymbol(MatchCard matchCard)
     {
         _matchCards.Add(matchCard);
-        UnityEngine.Debug.Log("IsGroupFull : "+_matchCards.Count + " / "+ IsGroupFull());
         if (IsGroupFull())
         {
             _onComplete?.Invoke(this);
