@@ -8,9 +8,9 @@ public class DependencyResolver : MonoBehaviour
 {
     public static DIContainer Container { get; private set; }
     [SerializeField]
-    private IGameManager _gameManager;
+    private GameManager _gameManager;
     [SerializeField]
-    private IUIManager _uiManager;
+    private UIManager _uiManager;
 
     private void Awake()
     {
