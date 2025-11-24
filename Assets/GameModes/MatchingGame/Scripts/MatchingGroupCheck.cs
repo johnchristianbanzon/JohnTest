@@ -51,10 +51,9 @@ public class MatchingGroupCheck
 
     public void ResetMatch()
     {
-        UnityEngine.Debug.Log("RESETTING!! : " + _matchCards.Count + " / " + IsGroupFull());
         for (int i = 0; i < _matchCards.Count; i++)
         {
-            _matchCards[i].Flip(false);
+            _matchCards[i].Shake();
         }
     }
 }

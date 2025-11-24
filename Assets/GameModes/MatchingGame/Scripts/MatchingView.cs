@@ -40,6 +40,7 @@ public class MatchingView : BaseView
     public void ContinueBoard(List<MatchSaveStateData> matchSaveData, Action<MatchCard> OnFlip, MatchingConfigSO catchConfig)
     {
         _gridLayoutGroup.enabled = true;
+        Debug.Log("catchConfig.GameboardSize.x :" + catchConfig.GameboardSize.x + " / " + catchConfig.GameboardSize.y);
         _gridLayoutGroup.constraintCount = catchConfig.GameboardSize.x > catchConfig.GameboardSize.y ? catchConfig.GameboardSize.x : catchConfig.GameboardSize.y;
         for (int i = 0; i < matchSaveData.Count; i++)
         {

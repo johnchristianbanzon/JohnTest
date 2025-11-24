@@ -17,7 +17,9 @@ public class UIManager : MonoBehaviour, IUIManager
     {
         if (_mainMenu != null)
         {
+           
             _mainMenu.Show();
+            _mainMenu.CheckMainMenu();
             return;
         }
         var resourceManager = DependencyResolver.Container.Resolve<IResourceManager>();

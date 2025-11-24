@@ -3,23 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MatchingGameController : GameController, IMatchingControllerResource
 {
     [SerializeField]
     private MatchingView _matchingView;
     [SerializeField]
+    private GenericButtonBehavior _button;
+    [SerializeField]
     private MatchingSymbolContainerSO _symbolContainer;
     private MatchingPresenter _matchingPresenter;
     private List<SymbolData> _uniqueSymbolData = new List<SymbolData>();
     private ISaveManager _saveManager;
     private IGameManager _gameManager;
-
+    private IUIManager _uiManager;
 
     private void Awake()
     {
         _gameManager = DependencyResolver.Container.Resolve<IGameManager>();
-
+        _uiManager = DependencyResolver.Container.Resolve<IUIManager>();
+        _button.SetButtonEvent(GoBackToMainMenu);
     }
 
     public SymbolData GetSymbolDataFromId(int id)
@@ -59,10 +63,15 @@ public class MatchingGameController : GameController, IMatchingControllerResourc
     public override void ContinueGame()
     {
         base.ContinueGame();
-        Debug.Log("_saveManager :" + _saveManager);
         _saveManager = DependencyResolver.Container.Resolve<ISaveManager>();
         var matchSaveData = _saveManager.LoadMatchingSaveData();
   
         _matchingPresenter.OverrideBoardFromSaveData((MatchingConfigSO)_gameManager.GetCurrentGameMode().GameModeConfig[matchSaveData.GameModeId], matchSaveData.Cards);
+    }
+
+    public void GoBackToMainMenu()
+    {
+        Destroy(gameObject);
+        _uiManager.ShowMainMenu();
     }
 }
