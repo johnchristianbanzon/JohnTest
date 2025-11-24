@@ -6,7 +6,7 @@ public class MainMenuView : BaseView
 {
     [SerializeField]
     private GameObject _menuButtonsContainer;
-
+    private GenericButtonBehavior _continueButton;
 
     public override void Show()
     {
@@ -30,11 +30,22 @@ public class MainMenuView : BaseView
 
     public void ShowContinueButton(Action OnClickContinueButton)
     {
-        var button = _resourceManager.SpawnPrefab("MediumButton", _menuButtonsContainer.transform).GetComponent<GenericButtonBehavior>();
-        button.SetText("Continue");
-        button.SetButtonEvent(delegate
+        if (_continueButton!=null)
+        {
+            _continueButton.gameObject.SetActive(true);
+            _continueButton.transform.SetAsFirstSibling();
+            return;
+        }
+        _continueButton = _resourceManager.SpawnPrefab("MediumButton", _menuButtonsContainer.transform).GetComponent<GenericButtonBehavior>();
+        _continueButton.SetText("Continue");
+        _continueButton.SetButtonEvent(delegate
         {
             OnClickContinueButton?.Invoke();
         });
+    }
+
+    public void HideContinueButton()
+    {
+        _continueButton.gameObject.SetActive(false);
     }
 }

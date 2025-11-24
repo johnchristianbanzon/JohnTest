@@ -16,9 +16,12 @@ public class MatchCard : MonoBehaviour, IPointerClickHandler
     private Sprite _symbolSprite;
     public bool IsMatched;
     public bool IsFaceUp;
+    private IAudioManager _audioManager;
+
 
     public void InitializeCard(SymbolData symbolData, Action<MatchCard> onFlipCard)
     {
+        _audioManager = DependencyResolver.Container.Resolve<IAudioManager>();
         SymbolData = symbolData;
         _symbolSprite = symbolData.FaceSprite;
         OnFlipCard = onFlipCard;
@@ -49,11 +52,16 @@ public class MatchCard : MonoBehaviour, IPointerClickHandler
     {
         IsMatched = true;
         transform.transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.InBack);
+        _audioManager.PlaySfX(EnumMatchingAudio.Match1);
     }
 
     public void Shake()
     {
-        transform.transform.DOShakeRotation(0.4f);
+        _audioManager.PlaySfX(EnumMatchingAudio.Fail);
+        transform.transform.DOShakeRotation(0.4f,30,randomnessMode: ShakeRandomnessMode.Harmonic).OnComplete(delegate
+        {
+            Flip(false);
+        });
     }
 
     public void Flip(bool open, bool noEvent=false)
@@ -74,6 +82,13 @@ public class MatchCard : MonoBehaviour, IPointerClickHandler
             });
         });
         IsFaceUp = open;
+
+        if (open)
+        {
+            _audioManager.PlaySfX(EnumMatchingAudio.Flip1);
+
+        }
+       
     }
 
 }

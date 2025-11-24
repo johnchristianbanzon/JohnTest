@@ -11,6 +11,8 @@ public class DependencyResolver : MonoBehaviour
     private GameManager _gameManager;
     [SerializeField]
     private UIManager _uiManager;
+    [SerializeField]
+    private AudioManager _audioManager;
 
     private void Awake()
     {
@@ -20,5 +22,6 @@ public class DependencyResolver : MonoBehaviour
         Container.Register<IUIManager>(_uiManager);
         Container.Register<IResourceManager>(new ResourceManager());
         Container.Register<ISaveManager>(new SaveManager());
+        Container.Register<IAudioManager>(_audioManager);
     }
 }

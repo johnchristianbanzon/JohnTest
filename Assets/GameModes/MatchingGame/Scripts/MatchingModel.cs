@@ -9,18 +9,24 @@ public class MatchingModel : BaseModel
     private List<MatchCard> _matchCards = new List<MatchCard>();
     private IMatchingControllerResource _matchingGameController;
     private ISaveManager _saveManager;
+    private IAudioManager _audioManager;
     private MatchingConfigSO _matchConfig;
     private List<MatchingGroupCheck> _matchingGroupChecks = new List<MatchingGroupCheck>();
     private int _score;
-    private bool _streakActive;
-    private int _lives;
+    private int _streakComboScore;
+    private int _currentStreak;
     public Action<int> OnUpdateScore;
     public Action<bool> OnCompleteGame;
+    private bool GameEnded = false;
+    private static int ScoreWeight = 2;
+    private static int StreakComboWeight = 2;
+    private static int StreakComboMultiplier = 2;
 
     public override void Initialize()
     {
         base.Initialize();
         _saveManager = DependencyResolver.Container.Resolve<ISaveManager>();
+        _audioManager = DependencyResolver.Container.Resolve<IAudioManager>();
     }
 
     public void AddMatchCard(MatchCard matchCard)
@@ -81,8 +87,17 @@ public class MatchingModel : BaseModel
 
     private void AddScore()
     {
-        _score += 1;
-        OnUpdateScore?.Invoke(_score);
+        if (_currentStreak >0)
+        {
+            _streakComboScore = (StreakComboMultiplier * (StreakComboWeight* _currentStreak));
+        }
+        else
+        {
+            _streakComboScore = 0;
+        }
+        _score += ScoreWeight;
+        OnUpdateScore?.Invoke(_score + _streakComboScore);
+        _currentStreak += 1;
     }
 
     private void CheckGameEnd()
@@ -91,7 +106,10 @@ public class MatchingModel : BaseModel
         if (allMatched)
         {
             //END GAME
+            GameEnded = true;
             OnCompleteGame?.Invoke(true);
+            _audioManager.PlaySfX(EnumMatchingAudio.Win);
+            _saveManager.DeleteMatchingSaveData();
         }
     }
 
@@ -105,6 +123,10 @@ public class MatchingModel : BaseModel
 
     public void SaveData()
     {
+        if (GameEnded)
+        {
+            return;
+        }
         var save = new MatchSaveStateDataList();
 
         foreach (var card in _matchCards)
@@ -117,6 +139,7 @@ public class MatchingModel : BaseModel
                 IsFaceUp = card.IsFaceUp
             }) ; 
         }
+        save.GameModeId = _matchConfig.GameModeId;
         _saveManager.SaveMatchingSaveData(save);
     }
 
@@ -130,6 +153,7 @@ public class MatchingModel : BaseModel
         else
         {
             matchGroup.ResetMatch();
+            _currentStreak = 0;
         }
         CheckGameEnd();
     }

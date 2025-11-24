@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e2d6ae4432595418f389c76f2a28af, type: 3}
+  m_Name: AudioContainer
+  m_EditorClassIdentifier: 
+  SfxData:
+  - SfxKey: 0
+    Clip: {fileID: 8300000, guid: eaaf393c631d9974bb11debae1160a82, type: 3}
+  - SfxKey: 1
+    Clip: {fileID: 8300000, guid: 97fe744fdd054fe40b2e9b68e8c27457, type: 3}
+  - SfxKey: 2
+    Clip: {fileID: 8300000, guid: 32f441b8911a57341ad19be15f910290, type: 3}
+  - SfxKey: 3
+    Clip: {fileID: 8300000, guid: 9d538f633b99c334f887e9d24fc91081, type: 3}
+  - SfxKey: 4
+    Clip: {fileID: 8300000, guid: 4da94c63f6b225442b84cc85b65f2487, type: 3}
+  - SfxKey: 5
+    Clip: {fileID: 8300000, guid: 603a8853434d08e4e8995d6d48230105, type: 3}
+  - SfxKey: 6
+    Clip: {fileID: 8300000, guid: 977807b9e731fcd4c867ed9379d5f265, type: 3}
+  - SfxKey: 7
+    Clip: {fileID: 8300000, guid: ac76a2afaa4f69f42a7b87f2d7b1b104, type: 3}
+  - SfxKey: 8
+    Clip: {fileID: 8300000, guid: f6a4173b1ea07e94680e4841c8f99bb2, type: 3}
+  BgmData:
+  - SfxKey: 0
+    Clip: {fileID: 0}
+  - SfxKey: 0
+    Clip: {fileID: 0}
