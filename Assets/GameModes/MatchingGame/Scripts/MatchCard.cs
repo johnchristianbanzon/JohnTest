@@ -3,7 +3,6 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class MatchCard : MonoBehaviour, IPointerClickHandler
 {
@@ -15,14 +14,16 @@ public class MatchCard : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private Image _symbolGraphic;
     private Sprite _symbolSprite;
+    public bool IsMatched;
+    public bool IsFaceUp;
 
     public void InitializeCard(SymbolData symbolData, Action<MatchCard> onFlipCard)
     {
         SymbolData = symbolData;
         _symbolSprite = symbolData.FaceSprite;
         OnFlipCard = onFlipCard;
-       
 
+        IsMatched = false;
         _symbolGraphic.sprite = _backSprite;
     }
     
@@ -41,8 +42,12 @@ public class MatchCard : MonoBehaviour, IPointerClickHandler
         transform.transform.DOScale(Vector3.one, 0.4f).SetDelay(delay).SetEase(Ease.OutBack);
     }
 
+    /// <summary>
+    /// Call for matched
+    /// </summary>
     public void PopOut()
     {
+        IsMatched = true;
         transform.transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.InBack);
     }
 
@@ -51,7 +56,7 @@ public class MatchCard : MonoBehaviour, IPointerClickHandler
         transform.transform.DOShakeRotation(0.4f);
     }
 
-    public void Flip(bool open)
+    public void Flip(bool open, bool noEvent=false)
     {
         AllowClick = false;
         transform.DORotate(new Vector3(0f, 90f, 0f), 0.4f).OnComplete(delegate
@@ -68,6 +73,7 @@ public class MatchCard : MonoBehaviour, IPointerClickHandler
                 }
             });
         });
+        IsFaceUp = open;
     }
 
 }

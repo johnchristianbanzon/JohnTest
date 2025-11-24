@@ -5,4 +5,5 @@ public class GameModeSO : ScriptableObject
 {
     public string Name;
     public GameController Controller;
+    public GameModeConfig[] GameModeConfig;
 }
