@@ -164,3 +164,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b7109419b274e94dbf4d0e827361fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AllowClick: 1
+  SymbolData:
+    Label: 0
+    Face: 0
+    FaceSprite: {fileID: 0}
+  _backSprite: {fileID: 21300000, guid: c67b764a8cb9ffe459b1004cacadb5ff, type: 3}
+  _symbolGraphic: {fileID: 7936822983750112802}

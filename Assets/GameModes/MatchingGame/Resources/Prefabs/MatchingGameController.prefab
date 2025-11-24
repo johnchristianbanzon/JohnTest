@@ -92,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _matchingView: {fileID: 66865184269794102}
   _matchingConfig: {fileID: 11400000, guid: ae51e77f9d3c7f84eb44bf24acc16a78, type: 2}
+  _symbolContainer: {fileID: 11400000, guid: 1e2b3abc55d887243b8c28006bfdfcf4, type: 2}
 --- !u!114 &66865184269794102
 MonoBehaviour:
   m_ObjectHideFlags: 0
